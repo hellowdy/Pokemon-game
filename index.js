@@ -32,9 +32,9 @@ collisionsMap.forEach((row, i) => {
 
 const image = new Image();
 image.src = './img/Pellet Town.png';
+
 const foregroundImage = new Image();
 foregroundImage.src = './img/foregroundObjects.png';
-
 
 const playerImage = new Image();
 playerImage.src = './img/playerDown.png'
@@ -63,7 +63,7 @@ const foreground = new Sprite({
         x: offset.x,
         y: offset.y
     },
-    image: image
+    image: foregroundImage
 })
 
 const keys = {
@@ -81,7 +81,7 @@ const keys = {
     }
 }
 
-const movables = [background, ...boundaries]
+const movables = [background, ...boundaries, foreground]
 
 function rectangularCollision({ rectangle1, rectangle2 }) {
     return (
@@ -98,6 +98,7 @@ function animate() {
         boundary.draw()
     })
     player.draw()
+    foreground.draw()
 
     let moving = true
     if (keys.z.pressed && lastKey === 'z') {
