@@ -1,6 +1,8 @@
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d')
-console.log(gsap);
+
+
+
 canvas.width = 1024;
 canvas.height = 576;
 
@@ -129,7 +131,7 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
     )
 }
 const battle = {
- initiated: false
+    initiated: false
 }
 
 function animate() {
@@ -147,7 +149,7 @@ function animate() {
     let moving = true
     player.moving = false
 
-    if(battle.initiated) return
+    if (battle.initiated) return
     // activate battle
     if (keys.z.pressed || keys.q.pressed || keys.s.pressed ||
         keys.d.pressed) {
@@ -170,13 +172,25 @@ function animate() {
                 && Math.random() < 0.01
             ) {
                 console.log('activate battle');
-                battleZone.initiated = true
+                gsap.to('#overlappingDiv', {
+                    opacity: 1,
+                    repeat: 3,
+                    yoyo: true,
+                    duration: 0.4,
+                    onComplete() {
+                        gsap.to('#overlappingDiv', {
+                            opacity: 1,
+                            duration: 0.4
+                        })
+                        
+                    }
+                })
                 break
             }
         }
     }
 
-    
+
     if (keys.z.pressed && lastKey === 'z') {
         player.moving = true
         player.image = player.sprites.up
