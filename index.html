@@ -17,11 +17,15 @@
             margin: 0;
         }
     </style>
-    <div>
-        <div style="background-color: black; width: 200px; height: 200px; position: absolute;"></div>
+    <div style="display: inline-block; position: relative;">
+        <div style="background-color: black; 
+        position: absolute; top: 0; right: 0; bottom: 0;
+        left: 0; opacity: 0; pointer-events: none;"></div>
         <canvas></canvas>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"
+        integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="data/battleZones.js"></script>
     <script src="data/collisions.js"></script>
     <script src="classes.js"></script>
