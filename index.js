@@ -1,6 +1,6 @@
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d')
-console.log(battleZonesData);
+console.log(gsap);
 canvas.width = 1024;
 canvas.height = 576;
 
@@ -146,7 +146,7 @@ function animate() {
 
     let moving = true
     player.moving = false
-    
+
     if(battle.initiated) return
     // activate battle
     if (keys.z.pressed || keys.q.pressed || keys.s.pressed ||
