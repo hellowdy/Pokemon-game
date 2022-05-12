@@ -149,7 +149,7 @@ function animate() {
 
     let moving = true
     player.moving = false
-console.log(animationId);
+    console.log(animationId);
     if (battle.initiated) return
     // activate battle
     if (keys.z.pressed || keys.q.pressed || keys.s.pressed ||
@@ -186,11 +186,17 @@ console.log(animationId);
                     onComplete() {
                         gsap.to('#overlappingDiv', {
                             opacity: 1,
-                            duration: 0.4
+                            duration: 0.4,
+                            onComplete() {
+                                // activate a new animation loop
+                                animateBattle()
+                                gsap.to('#overlappingDiv', {
+                                    opacity: 0,
+                                    duration: 0.4
+                                })
+                            }
                         })
-                       // animate a new animation loop
-                       animateBattle()
-                       
+
                     }
                 })
                 break
@@ -314,11 +320,23 @@ console.log(animationId);
             })
     }
 }
-animate()
+// animate()
+
+const battleBackgroundImage = new Image()
+battleBackgroundImage.src = './img/battleBackground.png'
+const battleBackground = new Sprite({
+    position: {
+        x: 0,
+        y: 0
+    },
+    image: battleBackgroundImage
+})
 function animateBattle() {
     window.requestAnimationFrame(animateBattle)
-    console.log('animating battle');
+    battleBackground.draw()
 }
+
+animateBattle()
 
 let lastKey = ''
 window.addEventListener('keydown', (e) => {
