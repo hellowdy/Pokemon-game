@@ -368,8 +368,10 @@ function animateBattle() {
 // animate()
 animateBattle()
 
+// our event listenners for our buttons (attack)
 document.querySelectorAll('button').forEach((button) => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
+        console.log(e.currentTarget.innerHTML);
         emby.attack({
             attack: {
                 name: 'Tackle',
