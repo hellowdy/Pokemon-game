@@ -26,21 +26,14 @@ const draggle = new Sprite({
 })
 const embyImage = new Image()
 embyImage.src = './img/embySprite.png'
-const emby = new Sprite({
-    position: {
-        x: 280,
-        y: 325
-    },
-    image: embyImage,
-    frames: {
-        max: 4,
-        hold: 30
-    },
-    animate: true,
-    name: 'Emby'
-})
+const emby = new Sprite()
 
 const renderedSprites = [draggle, emby]
+
+const button = document.createElement('button')
+button.innerHTML = 'Fireball'
+document.querySelector('#attacksBox').append(button)
+
 function animateBattle() {
     window.requestAnimationFrame(animateBattle)
     battleBackground.draw()
@@ -84,9 +77,8 @@ document.querySelectorAll('button').forEach((button) => {
 })
 
 document.querySelector('#dialogueBox').addEventListener('click', (e) => {
-    if(queue.length > 0){
+    if(queue.length > 0) {
         queue[0]()
         queue.shift()
     } else e.currentTarget.style.display = 'none'
-    console.log('clicked dialogue');
 })
