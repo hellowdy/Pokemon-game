@@ -9,15 +9,19 @@ const battleBackground = new Sprite({
 })
 
 
-const draggle = new Sprite(monsters.Draggle)
+const draggle = new Monster(monsters.Draggle)
+const emby = new Monster(monsters.Emby)
 
-const emby = new Sprite(monsters.Emby)
 
 const renderedSprites = [draggle, emby]
 
-const button = document.createElement('button')
-button.innerHTML = 'Fireball'
-document.querySelector('#attacksBox').append(button)
+emby.attacks.forEach((attack) => {
+    const button = document.createElement('button')
+    button.innerHTML = attack.name
+    document.querySelector('#attacksBox').append(button)
+})
+
+
 
 function animateBattle() {
     window.requestAnimationFrame(animateBattle)
@@ -51,18 +55,18 @@ document.querySelectorAll('button').forEach((button) => {
             })
         })
 
-        queue.push(() => {
-            draggle.attack({
-                attack: attacks.Fireball,
-                recipient: emby,
-                renderedSprites
-            })
-        })
+        // queue.push(() => {
+        //     draggle.attack({
+        //         attack: attacks.Fireball,
+        //         recipient: emby,
+        //         renderedSprites
+        //     })
+        // })
     })
 })
 
 document.querySelector('#dialogueBox').addEventListener('click', (e) => {
-    if(queue.length > 0) {
+    if (queue.length > 0) {
         queue[0]()
         queue.shift()
     } else e.currentTarget.style.display = 'none'
