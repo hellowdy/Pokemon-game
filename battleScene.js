@@ -47,7 +47,15 @@ document.querySelectorAll('button').forEach((button) => {
             renderedSprites
         })
 
-        const randomAttack = draggle.attacks[Math.floor(Math.random() * draggle.attacks.length)]
+        if (draggle.health <= 0) {
+            queue.push(() => {
+                draggle.faint()
+            })
+        }
+
+        // draggle or enemy attacks right here
+        const randomAttack =
+            draggle.attacks[Math.floor(Math.random() * draggle.attacks.length)]
 
         queue.push(() => {
             draggle.attack({
@@ -55,6 +63,12 @@ document.querySelectorAll('button').forEach((button) => {
                 recipient: emby,
                 renderedSprites
             })
+
+            if (emby.health <= 0) {
+                queue.push(() => {
+                    emby.faint()
+                })
+            }
         })
     })
 
